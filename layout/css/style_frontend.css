@@ -1,0 +1,72 @@
+.upper-bar{
+    padding: 15px;
+}
+.upper-bar a{
+    display: inline-block;
+    text-decoration: none;
+    color: #222f3e;
+    background-color: rgb(229, 252, 229);
+    border: 1.5px solid green;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: large;
+    font-weight: 600;
+    transition: all 0.5s ease;
+}
+.upper-bar a:hover{
+    background-color: rgb(134, 241, 134);
+}
+.navbar{
+    background-color: #222f3e;
+
+}
+.navbar a{
+    color: white;
+}
+.navbar .dropdown-menu{
+    background-color:#ff9f43;
+}
+
+.navbar .dropdown-menu .dropdown-item{
+    color: black;
+}
+
+.eye-icon{
+    cursor: pointer;
+}
+/******************/
+
+/****************************/
+.login-page{
+    min-width: 400px;
+    width: 50%;
+    background-color: rgb(221, 252, 221);
+    padding: 20px;
+    border: 2px solid rgb(26, 182, 26);
+    border-radius: 15px;
+    color: rgb(197, 50, 141);
+}
+.login-page p{
+    font-weight: 500;
+}
+.login-page label{
+    font-size: 20px;
+}
+.form-group{
+    position: relative;
+}
+.login-page .asterisk{
+    position: absolute;
+    top: 45px;
+    right:20px;
+    color: rgb(197, 50, 141);
+}
+/****************************/
+.my-card{
+    background-color: #e6eef8;
+    padding: 15px;
+    border: 1.5px solid #222f3e;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px 2px rgb(241, 183, 198) ;
+
+}

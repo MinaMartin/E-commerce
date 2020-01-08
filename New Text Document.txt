@@ -1,0 +1,59 @@
+SQL
+
+CREATING THE TABLE users:
+
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE `shop`.`users` ( `user_ID` INT(11) NOT NULL AUTO_INCREMENT , `Username` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL , `password` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL , `Email` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL , `Full_name` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL , `Group_ID` INT(11) NOT NULL DEFAULT '0' COMMENT 'Identify user Group' , `TrustStatus` INT(11) NOT NULL DEFAULT '0' , `RegStatus` INT(11) NOT NULL DEFAULT '0' , PRIMARY KEY (`user_ID`)) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci;;
+
+CREATING THE TABLE categories:
+
+CREATE TABLE `shop`.`categories` ( `ID` INT(11) NOT NULL AUTO_INCREMENT , `Name` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL , `Description` TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL , `Ordering` INT(11) NOT NULL , `Visibility` TINYINT(11) NOT NULL DEFAULT '0' , `Allow_Comment` TINYINT NOT NULL DEFAULT '0' , `Allow_Ads` TINYINT NOT NULL DEFAULT '0' , PRIMARY KEY (`ID`), UNIQUE (`Name`)) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci;
+
+
+CREATING THE TABLE items:
+CREATE TABLE `shop`.`items` ( `item_ID` INT(11) NOT NULL AUTO_INCREMENT , `Name` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL , `Description` TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL , `Price` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL , `Add_Date` DATE NOT NULL , `Country_made` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL , `Image` VARCHAR(255) NOT NULL , `Status` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL , `Rating` TINYINT NOT NULL , `Cat_ID` INT(11) NOT NULL , `Member_ID` INT(11) NOT NULL, PRIMARY KEY (`item_ID`))ENGINE =InnoDB CHARSET=utf8 COLLATE utf8_general_ci;;
+
+CREATING THE TABLE comments:
+CREATE TABLE `shop`.`comments` ( `C_id` INT(11) NOT NULL AUTO_INCREMENT , `Comment` TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL , `Status` TINYINT NOT NULL , `Comment_Date` DATE NOT NULL , `Item_ID` INT NOT NULL , `User_ID` INT NOT NULL , PRIMARY KEY (`C_id`)) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci;
+
+
+FOR ADDING FOREIGN KEYS IN THE SHOP DB SQL AREA WE WRITE:
+
+ALTER TABLE items
+Add CONSTRAINT member_1
+FOREIGN KEY(Member_ID)
+REFERENCES users(user_ID)
+
+ON UPDATE CASCADE
+ON DELETE CASCADE
+
+
+ALTER TABLE items
+Add CONSTRAINT cat_1
+FOREIGN KEY(Cat_ID)
+REFERENCES categories(ID)
+
+ON UPDATE CASCADE
+ON DELETE CASCADE
+
+
+ALTER TABLE comments
+ADD CONSTRAINT item_comment
+FOREIGN KEY (Item_ID) REFERENCES  items(Item_ID)
+ON UPDATE CASCADE
+ON DELETE CASCADE
+
+ALTER TABLE comments ADD CONSTRAINT user_comment
+FOREIGN KEY (User_ID) REFERENCES users(user_ID)
+ON UPDATE CASCADE
+ON DELETE CASCADE
+
+jOIN:
+
+SELECT items.* , categories.Name as Cat_Name , users.Username as Users_name FROM items
+
+INNER JOIN categories ON categories.ID = items.Cat_ID
+INNER JOIN users ON  users.user_ID = items.Member_ID
+
+Mina
+123456
